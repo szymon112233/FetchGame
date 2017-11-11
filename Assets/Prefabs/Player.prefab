@@ -22,8 +22,7 @@ GameObject:
   - component: {fileID: 33047534289950978}
   - component: {fileID: 136286034123469276}
   - component: {fileID: 23237194772345204}
-  - component: {fileID: 95156517459971056}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +42,7 @@ GameObject:
   - component: {fileID: 23323344606779142}
   - component: {fileID: 54102783785550484}
   - component: {fileID: 114767969504050802}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +57,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4819147144384170}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: GunEndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,25 +200,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!95 &95156517459971056
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1163998693177610}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2107e7d0f832956468a9dc36cbaff638, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114767969504050802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,7 +222,6 @@ MonoBehaviour:
   rigidBody: {fileID: 54102783785550484}
   bulletPrefab: {fileID: 1232800522855624, guid: d16e4f7be0303c24182f35a1402fb45b,
     type: 2}
-  gunAnimator: {fileID: 95156517459971056}
 --- !u!136 &136286034123469276
 CapsuleCollider:
   m_ObjectHideFlags: 1
