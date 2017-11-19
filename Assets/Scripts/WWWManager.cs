@@ -20,4 +20,11 @@ public class WWWManager : MonoBehaviour {
         www.Dispose();
 
     }
+
+    public void Connect()
+    {
+        StartCoroutine(GetSite());
+    }
+
+
 }

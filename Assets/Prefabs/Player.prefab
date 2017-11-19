@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4606208748240414}
   - component: {fileID: 33047534289950978}
-  - component: {fileID: 136286034123469276}
   - component: {fileID: 23237194772345204}
   m_Layer: 8
   m_Name: Gun
@@ -44,7 +43,7 @@ GameObject:
   - component: {fileID: 114767969504050802}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,19 +221,6 @@ MonoBehaviour:
   rigidBody: {fileID: 54102783785550484}
   bulletPrefab: {fileID: 1232800522855624, guid: d16e4f7be0303c24182f35a1402fb45b,
     type: 2}
---- !u!136 &136286034123469276
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1163998693177610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136741943854124912
 CapsuleCollider:
   m_ObjectHideFlags: 1
