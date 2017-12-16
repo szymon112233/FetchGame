@@ -13,7 +13,7 @@ public class PlayerMovment : MonoBehaviour {
 
     public Transform targetTransform;
     public Transform gunPointTransform;
-    public Rigidbody rigidBody;
+    public CharacterController chController;
     public GameObject bulletPrefab;
 
     void Update () {
@@ -25,15 +25,15 @@ public class PlayerMovment : MonoBehaviour {
     {
         Vector3 translateVector = new Vector3();
 
-        translateVector.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        translateVector.z = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        translateVector.x = Input.GetAxis("Horizontal") * speed;
+        translateVector.z = Input.GetAxis("Vertical") * speed;
 
-        rigidBody.MovePosition(rigidBody.position + translateVector);
+        chController.SimpleMove(translateVector);
 
         if (targetTransform != null && gunPointTransform != null)
         {
-            rigidBody.rotation = Quaternion.LookRotation(new Vector3(targetTransform.position.x, gunPointTransform.position.y, targetTransform.position.z) - gunPointTransform.position, Vector3.up);
-            Debug.DrawLine(gunPointTransform.position, new Vector3(targetTransform.position.x, rigidBody.position.y, targetTransform.position.z));
+            transform.rotation = Quaternion.LookRotation(new Vector3(targetTransform.position.x, gunPointTransform.position.y, targetTransform.position.z) - gunPointTransform.position, Vector3.up);
+            Debug.DrawLine(gunPointTransform.position, new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z));
         }
         
 
@@ -53,10 +53,10 @@ public class PlayerMovment : MonoBehaviour {
 
     private void Shoot(Vector3 moveVector)
     {
-        GameObject bullet = Instantiate(bulletPrefab, gunPointTransform.position, rigidBody.rotation) as GameObject;
+        GameObject bullet = Instantiate(bulletPrefab, gunPointTransform.position, new Quaternion()) as GameObject;
         if (bullet != null)
         {
-            Vector3 forceVector = new Vector3(targetTransform.position.x, rigidBody.position.y, targetTransform.position.z) - gunPointTransform.position + moveVector;
+            Vector3 forceVector = new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z) - gunPointTransform.position;
             forceVector.Normalize();
             forceVector *= bulletForce;
             bullet.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);

@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
     public Transform playerTransform = null;
 
     private Animator animator = null;
+    private CharacterController chController;
 
 
 
@@ -26,7 +27,9 @@ public class Enemy : MonoBehaviour {
     {
         currentHP = maxHP;
         animator = gameObject.GetComponent<Animator>();
+        chController = GetComponent<CharacterController>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        counter = Random.Range(0, perXFrames);
     }
 
     void Start () {
@@ -52,6 +55,13 @@ public class Enemy : MonoBehaviour {
             DealDamage(collision.gameObject.GetComponent<Bullet>().damage);
         }
             
+    }
+
+    public void Move(Vector3 direction)
+    {
+        Vector3 speedVector = direction;
+        speedVector *= speed;
+        chController.SimpleMove(speedVector);
     }
 
     public void DealDamage(float value)

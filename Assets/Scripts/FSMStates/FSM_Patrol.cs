@@ -12,18 +12,16 @@ public class FSM_Patrol : StateMachineBehaviour
 
     bool isFollowing = false;
 
-    float speed = 5.0f;
     float aproxTreshold = 1.0f;
 
     public float patrolRange = 5.0f;
 
-
+    private Enemy enemyScipt; 
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        speed = animator.gameObject.GetComponent<Enemy>().speed;
+        enemyScipt = animator.gameObject.GetComponent<Enemy>();  
     }
-
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
@@ -34,18 +32,15 @@ public class FSM_Patrol : StateMachineBehaviour
             dirVector = destPos - animator.gameObject.transform.position;
             dirVector.Normalize();
             dirVector.y = 0.0f;
+            enemyScipt.transform.rotation = Quaternion.LookRotation(dirVector, Vector3.up);
             isFollowing = true;
         }
         else
         {
             if (Mathf.Abs((destPos - animator.gameObject.transform.position).sqrMagnitude) > aproxTreshold)
-                animator.gameObject.transform.position += (dirVector * speed * Time.deltaTime);
+                enemyScipt.Move(dirVector);
             else
                 isFollowing = false;
         }
     }
-
-    
-
-
 }

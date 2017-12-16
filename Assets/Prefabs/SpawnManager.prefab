@@ -54,4 +54,4 @@ MonoBehaviour:
   spawners: []
   enemiesPrefabs:
   - {fileID: 1101636537825918, guid: d2ffa8c69de8f01409ca57a4be90a03a, type: 2}
-  spawnInterval: 60
+  spawnInterval: 5

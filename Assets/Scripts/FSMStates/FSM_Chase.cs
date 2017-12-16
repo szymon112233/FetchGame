@@ -7,18 +7,12 @@ public class FSM_Chase : StateMachineBehaviour
     Transform transform = null;
     Transform playerTransform = null;
 
-
-
-    float speed = 5.0f;
-
     float aproxTreshold = 1.0f;
-
-
-
+    private Enemy enemyScipt;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        speed = animator.gameObject.GetComponent<Enemy>().speed;
+        enemyScipt = animator.gameObject.GetComponent<Enemy>();
         transform = animator.gameObject.transform;
         playerTransform = animator.gameObject.GetComponent<Enemy>().playerTransform;
     }
@@ -30,11 +24,10 @@ public class FSM_Chase : StateMachineBehaviour
 
         Vector3 playerVector = playerTransform.position - transform.position;
         playerVector.Normalize();
-        playerVector *= (speed * Time.deltaTime);
         playerVector.y = 0;
         Debug.DrawRay(transform.position, playerVector * 10.0f, Color.red);
 
-        transform.position += playerVector;
+        enemyScipt.Move(playerVector);
     }
 
 
