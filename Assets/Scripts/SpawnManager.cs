@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
+    public static SpawnManager Instance = null;
+
     [SerializeField]
     EnemySpawner[] spawners = null;
 
     public GameObject[] enemiesPrefabs = null;
     public float spawnInterval = 5.0f;
 
+    public List<GameObject> spawnedEnemies;
+    private const int MAX_ENEMIES = 10; 
+
     float spawnTimer = 0.0f;
 
 
     private void Awake()
     {
+        Instance = this;
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Spawner");
+        spawnedEnemies = new List<GameObject>();
         spawners = new EnemySpawner[objects.Length];
         for (int i = 0; i < objects.Length; i++)
         {
             spawners[i] = objects[i].GetComponent<EnemySpawner>();
         }
-
         spawnTimer = spawnInterval;
     }
 
@@ -29,7 +35,7 @@ public class SpawnManager : MonoBehaviour {
     {
         spawnTimer -= Time.deltaTime;
 
-        if (spawnTimer < Mathf.Epsilon)
+        if (spawnTimer < Mathf.Epsilon && spawnedEnemies.Count < MAX_ENEMIES)
         {
             spawnTimer = spawnInterval;
 

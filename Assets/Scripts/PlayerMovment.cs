@@ -15,6 +15,7 @@ public class PlayerMovment : MonoBehaviour {
     public Transform gunPointTransform;
     public CharacterController chController;
     public GameObject bulletPrefab;
+    public Animator animator;
 
     void Update () {
         UpdateTimers();
@@ -29,8 +30,9 @@ public class PlayerMovment : MonoBehaviour {
         translateVector.z = Input.GetAxis("Vertical") * speed;
 
         chController.SimpleMove(translateVector);
-
-        if (targetTransform != null && gunPointTransform != null)
+        animator.SetFloat("Speed", translateVector.magnitude);
+        Debug.Log((transform.position - targetTransform.position).sqrMagnitude);
+        if (targetTransform != null && gunPointTransform != null && (transform.position - targetTransform.position).sqrMagnitude > 10)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(targetTransform.position.x, gunPointTransform.position.y, targetTransform.position.z) - gunPointTransform.position, Vector3.up);
             Debug.DrawLine(gunPointTransform.position, new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z));

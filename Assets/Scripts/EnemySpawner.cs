@@ -16,10 +16,12 @@ public class EnemySpawner : MonoBehaviour {
 
     public void Spawn(GameObject prefab = null)
     {
+        GameObject go = null; 
         if (prefab != null)
             prefabToSpawn = prefab;
         if (prefabToSpawn != null)
-            Instantiate(prefabToSpawn, transform.position, transform.rotation);
+            go = Instantiate(prefabToSpawn, transform.position, transform.rotation);
+        SpawnManager.Instance.spawnedEnemies.Add(go);
         
     }
 

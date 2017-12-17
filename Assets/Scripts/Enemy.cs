@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour {
 
     public Transform playerTransform = null;
 
-    private Animator animator = null;
+    private Animator animatorFSM = null;
+    public Animator animator = null;
     private CharacterController chController;
 
 
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         currentHP = maxHP;
-        animator = gameObject.GetComponent<Animator>();
+        animatorFSM = gameObject.GetComponent<Animator>();
         chController = GetComponent<CharacterController>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         counter = Random.Range(0, perXFrames);
@@ -41,8 +42,8 @@ public class Enemy : MonoBehaviour {
         if (counter % perXFrames == 0)
         {
             counter = 0;
-            animator.SetBool("isPlayerInRange", (Mathf.Abs((playerTransform.position - transform.position).sqrMagnitude) < visionRadius * visionRadius));
-            animator.SetBool("isInAttackRange", (Mathf.Abs((playerTransform.position - transform.position).sqrMagnitude) < attackDistance * attackDistance));
+            animatorFSM.SetBool("isPlayerInRange", (Mathf.Abs((playerTransform.position - transform.position).sqrMagnitude) < visionRadius * visionRadius));
+            animatorFSM.SetBool("isInAttackRange", (Mathf.Abs((playerTransform.position - transform.position).sqrMagnitude) < attackDistance * attackDistance));
         }
 
         
@@ -76,6 +77,7 @@ public class Enemy : MonoBehaviour {
     {
         isChasing = false;
         visionRadius = -1;
+        SpawnManager.Instance.spawnedEnemies.Remove(gameObject);
         Destroy(gameObject);
     }
 
