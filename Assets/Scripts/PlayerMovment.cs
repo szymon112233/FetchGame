@@ -31,7 +31,6 @@ public class PlayerMovment : MonoBehaviour {
 
         chController.SimpleMove(translateVector);
         animator.SetFloat("Speed", translateVector.magnitude);
-        Debug.Log((transform.position - targetTransform.position).sqrMagnitude);
         if (targetTransform != null && gunPointTransform != null && (transform.position - targetTransform.position).sqrMagnitude > 10)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(targetTransform.position.x, gunPointTransform.position.y, targetTransform.position.z) - gunPointTransform.position, Vector3.up);

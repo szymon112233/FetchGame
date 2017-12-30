@@ -38,7 +38,7 @@ public class FSM_Patrol : StateMachineBehaviour
         else
         {
             if (Mathf.Abs((destPos - animator.gameObject.transform.position).sqrMagnitude) > aproxTreshold)
-                enemyScipt.Move(dirVector);
+                enemyScipt.Move(destPos);
             else
                 isFollowing = false;
         }

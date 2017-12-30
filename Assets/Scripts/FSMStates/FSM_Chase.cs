@@ -20,14 +20,14 @@ public class FSM_Chase : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        transform.rotation = Quaternion.LookRotation(playerTransform.position - transform.position, Vector3.up);
+        //transform.rotation = Quaternion.LookRotation(playerTransform.position - transform.position, Vector3.up);
 
         Vector3 playerVector = playerTransform.position - transform.position;
         playerVector.Normalize();
         playerVector.y = 0;
         Debug.DrawRay(transform.position, playerVector * 10.0f, Color.red);
 
-        enemyScipt.Move(playerVector);
+        enemyScipt.Move(playerTransform.position);
     }
 
 

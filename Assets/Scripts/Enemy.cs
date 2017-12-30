@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
@@ -15,7 +16,10 @@ public class Enemy : MonoBehaviour {
 
     private Animator animatorFSM = null;
     public Animator animator = null;
+
     private CharacterController chController;
+    private NavMeshAgent navAgent;
+    private Transform target;
 
 
 
@@ -29,6 +33,7 @@ public class Enemy : MonoBehaviour {
         currentHP = maxHP;
         animatorFSM = gameObject.GetComponent<Animator>();
         chController = GetComponent<CharacterController>();
+        navAgent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         counter = Random.Range(0, perXFrames);
     }
@@ -58,11 +63,15 @@ public class Enemy : MonoBehaviour {
             
     }
 
-    public void Move(Vector3 direction)
+    public void Move(Vector3 target)
     {
+        /*
         Vector3 speedVector = direction;
         speedVector *= speed;
         chController.SimpleMove(speedVector);
+        */
+
+        navAgent.SetDestination(target);
     }
 
     public void DealDamage(float value)
