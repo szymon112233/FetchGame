@@ -12,14 +12,12 @@ public class Enemy : MonoBehaviour {
     public float maxHP = 200.0f;
     private float currentHP = 1;
 
-    public Transform playerTransform = null;
-
     private Animator animatorFSM = null;
     public Animator animator = null;
 
-    private CharacterController chController;
-    private NavMeshAgent navAgent;
+    public NavMeshAgent navAgent;
     private Transform target;
+    public Transform playerTransform = null;
 
 
 
@@ -32,7 +30,6 @@ public class Enemy : MonoBehaviour {
     {
         currentHP = maxHP;
         animatorFSM = gameObject.GetComponent<Animator>();
-        chController = GetComponent<CharacterController>();
         navAgent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         counter = Random.Range(0, perXFrames);

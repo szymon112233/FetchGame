@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class FSM_Patrol : StateMachineBehaviour
 {
+    public float patrolRange = 5.0f;
 
     [SerializeField]
     Vector3 destPos = new Vector3();
     [SerializeField]
     Vector3 dirVector = new Vector3();
-
     bool isFollowing = false;
-
     float aproxTreshold = 1.0f;
-
-    public float patrolRange = 5.0f;
-
-    private Enemy enemyScipt; 
+    private Enemy enemyScipt;
+    Animator animsAnimator = null;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        enemyScipt = animator.gameObject.GetComponent<Enemy>();  
+        enemyScipt = animator.gameObject.GetComponent<Enemy>();
+        animsAnimator = enemyScipt.animator;
+        animsAnimator.SetBool("isWalking", true);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
@@ -29,10 +28,6 @@ public class FSM_Patrol : StateMachineBehaviour
         {
             destPos = new Vector3(Random.Range(-patrolRange, patrolRange), 0, Random.Range(-patrolRange, patrolRange));
             destPos += animator.gameObject.transform.position;
-            dirVector = destPos - animator.gameObject.transform.position;
-            dirVector.Normalize();
-            dirVector.y = 0.0f;
-            enemyScipt.transform.rotation = Quaternion.LookRotation(dirVector, Vector3.up);
             isFollowing = true;
         }
         else
@@ -42,5 +37,11 @@ public class FSM_Patrol : StateMachineBehaviour
             else
                 isFollowing = false;
         }
+
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    {
+        animsAnimator.SetBool("isWalking", false);
     }
 }

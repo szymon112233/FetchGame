@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
+#if UNITY_EDITOR
 public class WWWTestingWindow : EditorWindow
 {
 
@@ -47,3 +50,4 @@ public class WWWTestingWindow : EditorWindow
    
 
 }
+#endif

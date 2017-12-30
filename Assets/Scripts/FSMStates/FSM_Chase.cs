@@ -9,12 +9,15 @@ public class FSM_Chase : StateMachineBehaviour
 
     float aproxTreshold = 1.0f;
     private Enemy enemyScipt;
+    Animator animsAnimator = null;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         enemyScipt = animator.gameObject.GetComponent<Enemy>();
         transform = animator.gameObject.transform;
         playerTransform = animator.gameObject.GetComponent<Enemy>().playerTransform;
+        animsAnimator = animator.gameObject.GetComponent<Enemy>().animator;
+        animsAnimator.SetBool("isWalking", true);
     }
 
 
@@ -28,6 +31,11 @@ public class FSM_Chase : StateMachineBehaviour
         Debug.DrawRay(transform.position, playerVector * 10.0f, Color.red);
 
         enemyScipt.Move(playerTransform.position);
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    {
+        animsAnimator.SetBool("isWalking", false);
     }
 
 
