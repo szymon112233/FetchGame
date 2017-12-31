@@ -59,6 +59,7 @@ public class PlayerMovment : MonoBehaviour {
         {
             Vector3 forceVector = new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z) - gunPointTransform.position;
             forceVector.Normalize();
+            forceVector.y = 0.0f;
             forceVector *= bulletForce;
             bullet.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
             shootTimer = shootInterval;

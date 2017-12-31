@@ -6026,6 +6026,7 @@ GameObject:
   - component: {fileID: 1943122606}
   - component: {fileID: 1943122604}
   - component: {fileID: 1943122603}
+  - component: {fileID: 1943122605}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6073,6 +6074,17 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1232800522855624, guid: d16e4f7be0303c24182f35a1402fb45b,
     type: 2}
   animator: {fileID: 581676323}
+--- !u!114 &1943122605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1943122602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4a67ff4541c8944848a380bb93a321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1943122606
 CapsuleCollider:
   m_ObjectHideFlags: 0
