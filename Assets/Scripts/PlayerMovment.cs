@@ -10,12 +10,27 @@ public class PlayerMovment : MonoBehaviour {
     public float shootInterval = 0.5f;
     public float shootTimer = 0.0f;
 
+    public float maxHP = 200.0f;
+    [SerializeField]
+    private float currentHP = 1;
+    public float CurrentHP
+    {
+        get
+        {
+            return currentHP;
+        }
+    }
 
     public Transform targetTransform;
     public Transform gunPointTransform;
     public CharacterController chController;
     public GameObject bulletPrefab;
     public Animator animator;
+
+    private void Awake()
+    {
+        currentHP = maxHP;
+    }
 
     void Update () {
         UpdateTimers();
@@ -63,6 +78,27 @@ public class PlayerMovment : MonoBehaviour {
             forceVector *= bulletForce;
             bullet.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
             shootTimer = shootInterval;
+        }
+    }
+
+    public void DealDamage(float value)
+    {
+        currentHP -= value;
+
+        if (currentHP <= 0.0f)
+            Die();
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Weapon"))
+        {
+            DealDamage(other.gameObject.GetComponent<Weapon>().Damage);
         }
     }
 }

@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour {
     {
         currentHP -= value;
 
-        if (currentHP < 0.0f)
+        if (currentHP <= 0.0f)
             Die();
     }
 
