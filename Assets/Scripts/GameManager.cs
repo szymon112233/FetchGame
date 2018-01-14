@@ -5,6 +5,7 @@ using UnityEngine;
 public enum GameState
 {
     MENU,
+    NETTEST,
     GAMEPLAY,
     COPUNT
 }
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour {
 
     public GameState CurrentGameState;
 
+    public GameObject MainPanel = null;
+    public GameObject NetTestPanel = null;
+
     private void InitGame()
     {
         CurrentGameState = GameState.MENU;
@@ -39,7 +43,21 @@ public class GameManager : MonoBehaviour {
         CurrentGameState = GameState.GAMEPLAY;
         UnityEngine.SceneManagement.SceneManager.LoadScene("main");
     }
-    
+
+    public void GoToNetTest()
+    {
+        CurrentGameState = GameState.NETTEST;
+        MainPanel.SetActive(false);
+        NetTestPanel.SetActive(true);
+    }
+
+    public void GoBackToMainMenu()
+    {
+        CurrentGameState = GameState.MENU;
+        MainPanel.SetActive(true);
+        NetTestPanel.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
