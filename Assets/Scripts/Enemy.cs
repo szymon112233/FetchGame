@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
     public float visionRadius = 10.0f;
     public float attackDistance = 2.0f;
     public float speed = 10.0f;
+    public float damage = 10.0f;
 
     public float maxHP = 200.0f;
     private float currentHP = 1;
@@ -19,27 +20,35 @@ public class Enemy : MonoBehaviour {
     private Transform target;
     public Transform playerTransform = null;
 
+    public Weapon weapon;
 
 
-    private bool isChasing = false;
     int counter = 0;
     int perXFrames = 3;
 
-
     private void Awake()
     {
+
+    }
+
+    void Start () {
         currentHP = maxHP;
         animatorFSM = gameObject.GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         counter = Random.Range(0, perXFrames);
+        weapon = GetComponentInChildren<Weapon>();
+        weapon.Damage = damage;
     }
 
-    void Start () {
-        
-	}
-	
-	void Update () {
+    private void OnEnable()
+    {
+        weapon = GetComponentInChildren<Weapon>();
+        if (weapon != null)
+            weapon.Damage = damage;
+    }
+
+    void Update () {
         counter++;
         if (counter % perXFrames == 0)
         {
@@ -62,12 +71,6 @@ public class Enemy : MonoBehaviour {
 
     public void Move(Vector3 target)
     {
-        /*
-        Vector3 speedVector = direction;
-        speedVector *= speed;
-        chController.SimpleMove(speedVector);
-        */
-
         navAgent.SetDestination(target);
     }
 
@@ -81,7 +84,6 @@ public class Enemy : MonoBehaviour {
 
     void Die()
     {
-        isChasing = false;
         visionRadius = -1;
         SpawnManager.Instance.spawnedEnemies.Remove(gameObject);
         Destroy(gameObject);

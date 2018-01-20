@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class WWWManager : MonoBehaviour {
 
+    public static UnityEvent OnDataLoaded = new UnityEvent();
+
     public string url = "http://127.0.0.1:8000/get/data";
+    private string urlHidden = "http://127.0.0.1:8000/get/data";
 
     public Text outputText = null;
     public Text itemListText = null;
@@ -18,21 +23,22 @@ public class WWWManager : MonoBehaviour {
         url = newUrl;
     }
 	
-	IEnumerator GetSite()
+	IEnumerator GetSite(string siteURL)
     {
-        WWW www = new WWW(url);
+        WWW www = new WWW(siteURL);
         yield return www;
         Debug.Log(www.text);
         outputText.text = www.text;
         DeseralizeJson(www.text);
         www.Dispose();
-
+        GenerateEnemies();
+        OnDataLoaded.Invoke();
     }
 
     public void Connect()
     {
         Debug.Log("Connect to: "+ url);
-        StartCoroutine(GetSite());
+        StartCoroutine(GetSite(url));
     }
 
 
@@ -40,6 +46,7 @@ public class WWWManager : MonoBehaviour {
     {
         string newJson = json.Replace("[", "{ \"enemies\":[");
         newJson = newJson.Replace("]","]}");
+        //SaveCachedJson(json);
         Debug.Log(newJson);
         data = JsonUtility.FromJson<EnemyListSerialized>(newJson);
         Debug.Log(data.enemies.Count);
@@ -49,6 +56,29 @@ public class WWWManager : MonoBehaviour {
             text += ("- " + tes.name + ".\n");
         }
         itemListText.text = text;
+    }
+
+    static void SaveCachedJson(string json)
+    {
+        string path = "Assets/Resources/Enemies.json";
+
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.Write(json);
+        writer.Close();
+
+    }
+
+    public void GenerateEnemies()
+    {
+        foreach (EnemySerialized enemy in data.enemies)
+        {
+            EnemyManager.instance.CreateFromData(enemy);
+        }
+    }
+
+    public void LoadDataFromServer()
+    {
+        StartCoroutine(GetSite(urlHidden));
     }
 
 

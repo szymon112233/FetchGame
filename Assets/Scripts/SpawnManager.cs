@@ -20,6 +20,8 @@ public class SpawnManager : MonoBehaviour {
 
     private void Awake()
     {
+        enemiesPrefabs = EnemyManager.instance.createdEnemies.ToArray();
+
         Instance = this;
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Spawner");
         spawnedEnemies = new List<GameObject>();

@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovment : MonoBehaviour {
+
+    public UnityEvent OnPlayerKilled = new UnityEvent();
 
     public float speed = 10;
     public float bulletForce = 10;
@@ -11,6 +14,9 @@ public class PlayerMovment : MonoBehaviour {
     public float shootTimer = 0.0f;
 
     public float maxHP = 200.0f;
+
+    public bool isGodMode = false;
+
     [SerializeField]
     private float currentHP = 1;
     public float CurrentHP
@@ -91,7 +97,12 @@ public class PlayerMovment : MonoBehaviour {
 
     void Die()
     {
-        Destroy(gameObject);
+        if (!isGodMode)
+        {
+            OnPlayerKilled.Invoke();
+            Destroy(gameObject);
+        }
+            
     }
 
     private void OnTriggerEnter(Collider other)

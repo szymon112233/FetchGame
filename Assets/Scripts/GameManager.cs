@@ -12,6 +12,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour {
 
+
 #region singleton
     public static GameManager instance = null;
 
@@ -33,12 +34,26 @@ public class GameManager : MonoBehaviour {
     public GameObject MainPanel = null;
     public GameObject NetTestPanel = null;
 
+    public WWWManager wwwManager = null;
+
+
     private void InitGame()
     {
         CurrentGameState = GameState.MENU;
     }
 
     public void StartGame()
+    {
+        LoadDataFromServer();
+    }
+
+    private void LoadDataFromServer()
+    {
+        WWWManager.OnDataLoaded.AddListener(AfterDataLoaded);
+        wwwManager.LoadDataFromServer();
+    }
+
+    private void AfterDataLoaded()
     {
         CurrentGameState = GameState.GAMEPLAY;
         UnityEngine.SceneManagement.SceneManager.LoadScene("main");

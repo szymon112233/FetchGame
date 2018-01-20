@@ -20,8 +20,14 @@ public class EnemySpawner : MonoBehaviour {
         if (prefab != null)
             prefabToSpawn = prefab;
         if (prefabToSpawn != null)
+        {
             go = Instantiate(prefabToSpawn, transform.position, transform.rotation);
-        SpawnManager.Instance.spawnedEnemies.Add(go);
+            go.SetActive(true);
+            SpawnManager.Instance.spawnedEnemies.Add(go);
+        }
+            
+                
+        
         
     }
 
