@@ -8,10 +8,7 @@ public class PlayerMovment : MonoBehaviour {
     public UnityEvent OnPlayerKilled = new UnityEvent();
 
     public float speed = 10;
-    public float bulletForce = 10;
-
-    public float shootInterval = 0.5f;
-    public float shootTimer = 0.0f;
+    public Gun gun = null;
 
     public float maxHP = 200.0f;
 
@@ -39,7 +36,6 @@ public class PlayerMovment : MonoBehaviour {
     }
 
     void Update () {
-        UpdateTimers();
         UpdateInput();
     }
 
@@ -61,31 +57,12 @@ public class PlayerMovment : MonoBehaviour {
 
         if (Input.GetButton("Fire1"))
         {
-            if (shootTimer <= 0.0f)
-                Shoot(translateVector);
+            gun.Shoot(gunPointTransform.position, targetTransform.position);
         }
 
     }
 
-    private void UpdateTimers()
-    {
-        if (shootTimer > 0.0f)
-            shootTimer -= Time.deltaTime;
-    }
-
-    private void Shoot(Vector3 moveVector)
-    {
-        GameObject bullet = Instantiate(bulletPrefab, gunPointTransform.position, new Quaternion()) as GameObject;
-        if (bullet != null)
-        {
-            Vector3 forceVector = new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z) - gunPointTransform.position;
-            forceVector.Normalize();
-            forceVector.y = 0.0f;
-            forceVector *= bulletForce;
-            bullet.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
-            shootTimer = shootInterval;
-        }
-    }
+    
 
     public void DealDamage(float value)
     {

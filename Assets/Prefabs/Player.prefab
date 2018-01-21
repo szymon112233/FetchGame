@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 114767969504050802}
   - component: {fileID: 143093916872639178}
   - component: {fileID: 136718760529940740}
+  - component: {fileID: 114883293557276832}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -658,7 +659,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474247368292042}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 296, y: 1, z: 132.2}
+  m_LocalPosition: {x: 239.37, y: 1, z: 251.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4536051233155042}
@@ -840,7 +841,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1531051228579910}
   m_LocalRotation: {x: 0.021045769, y: 0.7180296, z: -0.01271657, w: 0.69557816}
-  m_LocalPosition: {x: 0.05, y: 0.1, z: 0.11}
+  m_LocalPosition: {x: 1.176, y: 0.062, z: 0.032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4524207303459140}
@@ -947,7 +948,7 @@ Light:
   m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -979,11 +980,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2016b6c4cec1f4e98cc8e5196a7344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerKilled:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   speed: 10
-  bulletForce: 50
-  shootInterval: 0.1
-  shootTimer: 0
+  gun: {fileID: 114883293557276832}
   maxHP: 200
+  isGodMode: 0
   currentHP: 1
   targetTransform: {fileID: 0}
   gunPointTransform: {fileID: 4703672275053480}
@@ -991,6 +996,24 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1232800522855624, guid: d16e4f7be0303c24182f35a1402fb45b,
     type: 2}
   animator: {fileID: 95812215951624662}
+--- !u!114 &114883293557276832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474247368292042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1ba803a2c3f6e479191e1ca49177f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  bulletPrefab: {fileID: 1232800522855624, guid: d16e4f7be0303c24182f35a1402fb45b,
+    type: 2}
+  bulletForce: 100
+  shootInterval: 0.2
+  shootTimer: 0
+  ammo: 1000
 --- !u!136 &136718760529940740
 CapsuleCollider:
   m_ObjectHideFlags: 1

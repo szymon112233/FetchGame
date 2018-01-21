@@ -13,7 +13,7 @@ public class SpawnManager : MonoBehaviour {
     public float spawnInterval = 5.0f;
 
     public List<GameObject> spawnedEnemies;
-    private const int MAX_ENEMIES = 10; 
+    public const int MAX_ENEMIES = 100; 
 
     float spawnTimer = 0.0f;
 

@@ -464,6 +464,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114891119762293714, guid: c35834ad4b5571f48970f14c67795fca,
+        type: 2}
+      propertyPath: modelsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4196961743761738, guid: c35834ad4b5571f48970f14c67795fca, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -505,6 +510,12 @@ Prefab:
       propertyPath: emptyEnemyPrefab
       value: 
       objectReference: {fileID: 1713965954589110, guid: d638c0eae32241946996ef6caf914a65,
+        type: 2}
+    - target: {fileID: 114891119762293714, guid: c35834ad4b5571f48970f14c67795fca,
+        type: 2}
+      propertyPath: modelsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 1825929305377432, guid: 002d359a13ee83b4096f4cfbbba5220f,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c35834ad4b5571f48970f14c67795fca, type: 2}
