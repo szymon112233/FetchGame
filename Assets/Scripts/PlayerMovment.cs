@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerMovment : MonoBehaviour {
 
-    public UnityEvent OnPlayerKilled = new UnityEvent();
+    public static UnityEvent OnPlayerKilled = new UnityEvent();
 
     public float speed = 10;
     public Gun gun = null;
@@ -37,6 +37,7 @@ public class PlayerMovment : MonoBehaviour {
 
     void Update () {
         UpdateInput();
+        UpdateCheats();
     }
 
     private void UpdateInput()
@@ -62,11 +63,22 @@ public class PlayerMovment : MonoBehaviour {
 
     }
 
+    private void UpdateCheats()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+            isGodMode = !isGodMode;
+
+        if (Input.GetKeyDown(KeyCode.F2))
+            gun.ammo += 100;
+
+    }
+
     
 
     public void DealDamage(float value)
     {
-        currentHP -= value;
+        if (!isGodMode)
+            currentHP -= value;
 
         if (currentHP <= 0.0f)
             Die();
@@ -88,5 +100,10 @@ public class PlayerMovment : MonoBehaviour {
         {
             DealDamage(other.gameObject.GetComponent<Weapon>().Damage);
         }
+    }
+
+    public void GetPickup(PickUpType type, int value)
+    {
+        gun.ammo += value;
     }
 }

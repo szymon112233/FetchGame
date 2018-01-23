@@ -80,6 +80,8 @@ MonoBehaviour:
   navAgent: {fileID: 0}
   playerTransform: {fileID: 0}
   weapon: {fileID: 0}
+  PickupPrefab: {fileID: 1621025577693510, guid: b2541f3c11ec5354dbf82cb24cdf10ec,
+    type: 2}
 --- !u!136 &136141271282291374
 CapsuleCollider:
   m_ObjectHideFlags: 1

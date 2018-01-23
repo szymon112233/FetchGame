@@ -469,6 +469,11 @@ Prefab:
       propertyPath: modelsList.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114891119762293714, guid: c35834ad4b5571f48970f14c67795fca,
+        type: 2}
+      propertyPath: cachedEnemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4196961743761738, guid: c35834ad4b5571f48970f14c67795fca, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -516,6 +521,24 @@ Prefab:
       propertyPath: modelsList.Array.data[2]
       value: 
       objectReference: {fileID: 1825929305377432, guid: 002d359a13ee83b4096f4cfbbba5220f,
+        type: 2}
+    - target: {fileID: 114891119762293714, guid: c35834ad4b5571f48970f14c67795fca,
+        type: 2}
+      propertyPath: cachedEnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1101636537825918, guid: d2ffa8c69de8f01409ca57a4be90a03a,
+        type: 2}
+    - target: {fileID: 114891119762293714, guid: c35834ad4b5571f48970f14c67795fca,
+        type: 2}
+      propertyPath: cachedEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1219272229303840, guid: aa4d87edcacfda347ad4ab528970902f,
+        type: 2}
+    - target: {fileID: 114891119762293714, guid: c35834ad4b5571f48970f14c67795fca,
+        type: 2}
+      propertyPath: cachedEnemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 1668075334372240, guid: fe4f66eff4ef16d46b18822da2aaf6e3,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c35834ad4b5571f48970f14c67795fca, type: 2}
@@ -644,7 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5176471, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 0.42647058, g: 0.012543264, b: 0.012543264, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1207,7 +1230,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
     public Transform playerTransform = null;
 
     public Weapon weapon;
+    public GameObject PickupPrefab;
 
 
     int counter = 0;
@@ -84,9 +85,17 @@ public class Enemy : MonoBehaviour {
 
     void Die()
     {
+        SpawnPickup();
         visionRadius = -1;
         SpawnManager.Instance.spawnedEnemies.Remove(gameObject);
         Destroy(gameObject);
+    }
+
+    private void SpawnPickup()
+    {
+        int randomNumber = Random.Range(0, 100);
+        if (randomNumber > 80)
+            Instantiate(PickupPrefab, transform.position, transform.rotation);
     }
 
 }

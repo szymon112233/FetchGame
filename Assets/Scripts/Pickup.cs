@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum PickUpType
+public enum PickUpType
 {
     HEALTH,
-    PISTOL,
-    SUBMACHINE,
-    SHOTGUN
+    AMMO
 }
 
 
 public class Pickup : MonoBehaviour {
 
-    public 
+    PickUpType type;
+    int ammount;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        type = PickUpType.AMMO;
+        ammount = 30;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerMovment>().GetPickup(type, ammount);
+            Destroy(gameObject);
+        }
+    }
 }

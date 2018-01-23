@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour {
     public List<GameObject> modelsList;
     public GameObject emptyEnemyPrefab = null;
     public List<GameObject> createdEnemies;
+    public List<GameObject> cachedEnemies;
 
     private void Init()
     {
@@ -51,6 +52,11 @@ public class EnemyManager : MonoBehaviour {
         return go;
 
 
+    }
+
+    public void LoadCachedEnemies()
+    {
+        createdEnemies = new List<GameObject>(cachedEnemies);
     }
 
 }

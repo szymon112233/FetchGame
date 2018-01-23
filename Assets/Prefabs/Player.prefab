@@ -659,7 +659,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474247368292042}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 239.37, y: 1, z: 251.93}
+  m_LocalPosition: {x: 91.22999, y: 1, z: 103.609985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4536051233155042}
@@ -1013,7 +1013,7 @@ MonoBehaviour:
   bulletForce: 100
   shootInterval: 0.2
   shootTimer: 0
-  ammo: 1000
+  ammo: 100
 --- !u!136 &136718760529940740
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour {
     private void AfterDataLoaded()
     {
         CurrentGameState = GameState.GAMEPLAY;
+        PlayerMovment.OnPlayerKilled.AddListener(OnPlayerDeath);
         UnityEngine.SceneManagement.SceneManager.LoadScene("main");
     }
 
@@ -76,6 +77,11 @@ public class GameManager : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void OnPlayerDeath()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("main");
     }
 
 

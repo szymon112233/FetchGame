@@ -18,6 +18,8 @@ public class WWWManager : MonoBehaviour {
 
     public EnemyListSerialized data = null;
 
+    bool isDataLoadedCorrectly = true;
+
     public void SetNewURL(string newUrl)
     {
         url = newUrl;
@@ -49,6 +51,11 @@ public class WWWManager : MonoBehaviour {
         //SaveCachedJson(json);
         Debug.Log(newJson);
         data = JsonUtility.FromJson<EnemyListSerialized>(newJson);
+        if (data == null)
+        {
+            isDataLoadedCorrectly = false;
+            return;
+        }
         Debug.Log(data.enemies.Count);
         string text = "Deseralized Items:\n";
         foreach (EnemySerialized tes in data.enemies)
@@ -70,10 +77,18 @@ public class WWWManager : MonoBehaviour {
 
     public void GenerateEnemies()
     {
-        foreach (EnemySerialized enemy in data.enemies)
+        if (isDataLoadedCorrectly)
         {
-            EnemyManager.instance.CreateFromData(enemy);
+            foreach (EnemySerialized enemy in data.enemies)
+            {
+                EnemyManager.instance.CreateFromData(enemy);
+            }
         }
+        else
+        {
+            EnemyManager.instance.LoadCachedEnemies();
+        }
+        
     }
 
     public void LoadDataFromServer()
